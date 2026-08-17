@@ -26,9 +26,13 @@ export type CacheStore<TSettings> = {
   title?: string
 }
 
-const MIN_TTL_MINUTES = 240 // 4h
+const MIN_TTL_MINUTES = 5
 
 const TTL_FIXED_OPTIONS: Array<{ label: string; value: number }> = [
+  { label: "15 分钟", value: 15 },
+  { label: "30 分钟", value: 30 },
+  { label: "1 小时", value: 60 },
+  { label: "2 小时", value: 120 },
   { label: "4 小时", value: 240 },
   { label: "6 小时", value: 360 },
   { label: "12 小时", value: 720 },
@@ -36,6 +40,9 @@ const TTL_FIXED_OPTIONS: Array<{ label: string; value: number }> = [
 ]
 
 const STALE_OPTIONS: Array<{ label: string; value: number }> = [
+  { label: "30 分钟", value: 30 },
+  { label: "1 小时", value: 60 },
+  { label: "2 小时", value: 120 },
   { label: "4 小时", value: 240 },
   { label: "6 小时", value: 360 },
   { label: "12 小时", value: 720 },
@@ -102,7 +109,7 @@ function computeTtlActualMinutes(cache: CacheConfig, refreshMinutesMaybe?: any) 
   if (cache.ttlPolicy === "fixed") {
     return Math.max(MIN_TTL_MINUTES, fixed)
   }
-  // auto：max(4h, refreshInterval)
+  // auto：跟随组件刷新间隔
   return Math.max(MIN_TTL_MINUTES, refreshMinutes)
 }
 
@@ -203,8 +210,9 @@ export function CacheSection<TSettings>({
         <Text font="caption2" foregroundStyle="secondaryLabel">
           • 当前生效：缓存有效期（TTL）={ttlActualText}；旧缓存兜底={staleText}。
           {cache.allowStaleOnError
-            ? "\n• 已自动纠偏：兜底时长不会小于 TTL（避免网络失败时反而不能用缓存兜底）。"
+            ? "\n• 已自动纠偏：兜底时长不会小于 TTL。"
             : ""}
+          {"\n"}• 这不是系统刷新时间，只是组件自己多久认为缓存过期。
         </Text>
       }
     >
@@ -286,7 +294,7 @@ export function CacheSection<TSettings>({
             </Picker>
           ) : (
             <Text font="caption2" foregroundStyle="secondaryLabel">
-              TTL 自动：max(4 小时, 组件刷新间隔)。当前 TTL={ttlActualText}。
+              TTL 自动：跟随组件刷新间隔。当前 TTL={ttlActualText}。
             </Text>
           )}
 

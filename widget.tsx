@@ -72,13 +72,13 @@ function isWithin(ms: number, now: number, ts: number): boolean {
 
 function computeTtlMs(settings: ChinaMobileSettings): number {
   const cfg = settings.cache
-  const refreshMs = Math.max(5, settings.refreshInterval || 180) * 60 * 1000
+  const refreshMs = Math.min(30, Math.max(5, settings.refreshInterval || 30)) * 60 * 1000
 
   if (cfg.ttlPolicy === "fixed") {
     return Math.max(1, cfg.ttlMinutesFixed) * 60 * 1000
   }
-  // auto：ttl=max(4h, refreshInterval)
-  return Math.max(3 * 60 * 60 * 1000, refreshMs)
+  // auto：ttl=refreshInterval；小组件是否准点仍由 iOS 调度决定
+  return refreshMs
 }
 
 function boundKeyFromSettings(settings: ChinaMobileSettings): string {
@@ -397,8 +397,8 @@ async function render() {
   const settings = loadChinaMobileSettings()
   const ui = pickUiSettings(settings)
 
-  // 刷新间隔：沿用你 settings 的 resolveRefreshInterval
-  const refreshInterval = Math.max(60, resolveRefreshInterval(settings.refreshInterval, 180))
+  // 刷新间隔：更激进，尽量让系统更早尝试刷新
+  const refreshInterval = Math.min(30, Math.max(15, resolveRefreshInterval(settings.refreshInterval, 30)))
   const nextUpdate = new Date(Date.now() + refreshInterval * 60 * 1000)
   const reloadPolicy: WidgetReloadPolicy = { policy: "after", date: nextUpdate }
 

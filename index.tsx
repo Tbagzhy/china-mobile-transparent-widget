@@ -70,8 +70,8 @@ declare const Dialog: any
  * - 常量区不打日志
  * ===================================================================== */
 
-const VERSION = "1.0.0"
-const BUILD_DATE = "2025-12-20"
+const VERSION = "1.0.1"
+const BUILD_DATE = "2026-08-17"
 
 /* =====================================================================
  * 模块分类 · BoxJS / 模块链接
@@ -381,10 +381,10 @@ function SettingsView() {
         <Section
           footer={
             <Text font="caption2" foregroundStyle="secondaryLabel">
-              当前生效示例：refresh={refreshInterval} 分钟，TTL 自动为 max(4 小时, refresh)；固定 TTL 则为 max(4 小时, 固定值)。
-              {"\n"}提示：你设置的“兜底旧缓存最长允许”会被自动纠偏为 ≥ TTL（避免反直觉）。
+              当前生效示例：refresh={refreshInterval} 分钟，TTL 默认跟随刷新间隔；固定 TTL 则按你选的值。
+              {"\n"}提示：这是组件缓存策略，不是 iOS 系统刷新保证。
               {"\n"}（用于说明：
-              {formatDuration(Math.max(240, Number(refreshInterval) || 0), { includeSeconds: false })}）
+              {formatDuration(Math.max(5, Number(refreshInterval) || 0), { includeSeconds: false })}）
             </Text>
           }
         />

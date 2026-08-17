@@ -33,6 +33,8 @@ type RenderConfigSectionProps = {
 }
 
 const REFRESH_OPTIONS = [
+  { label: "5 分钟", value: 5 },
+  { label: "10 分钟", value: 10 },
   { label: "15 分钟", value: 15 },
   { label: "30 分钟", value: 30 },
   { label: "1 小时", value: 60 },
@@ -97,7 +99,7 @@ export function RenderConfigSection(props: RenderConfigSectionProps) {
           {"\n"}• 百分比含义：作用于通用/定向/语音（或总流量/语音），由「显示剩余/已使用」决定。
           {"\n"}• 中号组件：样式=全圆环/仪表盘；布局=三卡/四卡（三卡会隐藏定向卡）。
           {"\n"}• 三卡布局下：可选择“总流量包含定向”或“仅通用流量”。
-          {"\n"}• 刷新间隔建议 15 分钟～24 小时（系统调度可能更慢）。
+          {"\n"}• 刷新间隔可选 5 分钟～24 小时；桌面实际请求会按 15～30 分钟兜底，避免旧设置卡在 3 小时。
         </Text>
       }
     >
@@ -174,7 +176,7 @@ export function RenderConfigSection(props: RenderConfigSectionProps) {
         value={refreshInterval}
         onChanged={(value: number) => {
           const n = Number(value)
-          setRefreshInterval(Number.isFinite(n) ? n : 180)
+          setRefreshInterval(Number.isFinite(n) ? n : 30)
         }}
         pickerStyle={"menu"}
       >

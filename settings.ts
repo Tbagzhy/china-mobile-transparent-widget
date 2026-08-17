@@ -42,7 +42,7 @@ export const defaultChinaMobileSettings: ChinaMobileSettings = {
   // ✅ 对齐联通：UI 默认直接来自 pickUiSettings（确保字段齐全且一致）
   ...pickUiSettings({}),
 
-  refreshInterval: 180,
+  refreshInterval: 30,
 
   cacheScopeKey: "",
   cache: {
@@ -52,9 +52,9 @@ export const defaultChinaMobileSettings: ChinaMobileSettings = {
     // 如果你们 cacheSection 的 mode 不是 "auto"，改成它支持的默认值即可
     mode: "auto" as CacheMode,
 
-    // auto：ttl=max(4h, refreshInterval)
+    // auto：ttl=refreshInterval
     ttlPolicy: "auto",
-    ttlMinutesFixed: 360,
+    ttlMinutesFixed: 60,
 
     allowStaleOnError: true,
     maxStaleMinutes: 1440,
@@ -77,8 +77,8 @@ function normalizeCacheConfig(cfg: any, refreshIntervalMinutes: number): CacheCo
   const ttlPolicy: CacheConfig["ttlPolicy"] = cfg?.ttlPolicy === "fixed" ? "fixed" : "auto"
   const ttlFixed = Math.max(1, Number(cfg?.ttlMinutesFixed ?? d.ttlMinutesFixed) || d.ttlMinutesFixed)
 
-  const ttlMinutes = Math.max(180, ttlPolicy === "fixed" ? ttlFixed : (Number(refreshIntervalMinutes) || 0))
-  const ttlMinutesFixed = Math.max(180, ttlFixed)
+  const ttlMinutes = Math.max(5, ttlPolicy === "fixed" ? ttlFixed : (Number(refreshIntervalMinutes) || 0))
+  const ttlMinutesFixed = Math.max(5, ttlFixed)
 
   const allowStaleOnError =
     typeof cfg?.allowStaleOnError === "boolean" ? cfg.allowStaleOnError : d.allowStaleOnError
