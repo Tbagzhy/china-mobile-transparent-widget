@@ -379,7 +379,7 @@ export function CompactListSmallStyle(props: SmallCardCommonProps) {
   return (
     <SmallCardSurface>
       <VStack spacing={4} frame={{ minWidth: 0, maxWidth: Infinity }} alignment="leading">
-        <HStack alignment="top" spacing={6} frame={{ minWidth: 0, maxWidth: Infinity }}>
+        <HStack alignment="top" spacing={6} padding={{ leading: 22 }} frame={{ minWidth: 0, maxWidth: Infinity }}>
           <VStack spacing={2} alignment="leading" frame={{ minWidth: 0, maxWidth: Infinity }}>
             <Spacer minLength={5} />
             <HStack alignment="lastTextBaseline" spacing={5} frame={{ minWidth: 0, maxWidth: Infinity }}>
