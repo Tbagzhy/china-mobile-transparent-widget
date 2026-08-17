@@ -381,14 +381,8 @@ export function CompactListSmallStyle(props: SmallCardCommonProps) {
       <VStack spacing={4} frame={{ minWidth: 0, maxWidth: Infinity }} alignment="leading">
         <HStack alignment="top" spacing={6} frame={{ minWidth: 0, maxWidth: Infinity }}>
           <VStack spacing={2} alignment="leading" frame={{ minWidth: 0, maxWidth: Infinity }}>
-            <Left>
-              <Text font={10} foregroundStyle={timeStyle} lineLimit={1} minScaleFactor={0.7}>
-                {props.feeTitle || "剩余话费"}
-              </Text>
-            </Left>
-
             <HStack alignment="lastTextBaseline" spacing={5} frame={{ minWidth: 0, maxWidth: Infinity }}>
-              <Text font={26} fontWeight="bold" foregroundStyle={ringThemes.fee.tint} lineLimit={1} minScaleFactor={0.5}>
+              <Text font={31} fontWeight="bold" foregroundStyle={ringThemes.fee.tint} lineLimit={1} minScaleFactor={0.45}>
                 {fee.balance}
               </Text>
               <Text font={10} fontWeight="semibold" foregroundStyle={timeStyle} lineLimit={1} minScaleFactor={0.65}>
@@ -398,10 +392,10 @@ export function CompactListSmallStyle(props: SmallCardCommonProps) {
             </HStack>
           </VStack>
 
-          <VStack spacing={3} alignment="trailing" frame={{ minWidth: 0 }}>
+          <VStack spacing={2} alignment="trailing" frame={{ width: 44 }}>
             <LogoImage logoPath={props.logoPath} size={24} fallbackTheme={ringThemes.fee} />
             {props.updateTime ? (
-              <Text font={9} foregroundStyle={timeStyle} lineLimit={1} minScaleFactor={0.65}>
+              <Text font={9} foregroundStyle={timeStyle} lineLimit={1} minScaleFactor={0.65} frame={{ width: 44, alignment: "center" }}>
                 {props.updateTime}
               </Text>
             ) : null}
