@@ -379,29 +379,29 @@ export function CompactListSmallStyle(props: SmallCardCommonProps) {
   return (
     <SmallCardSurface>
       <VStack spacing={4} frame={{ minWidth: 0, maxWidth: Infinity }} alignment="leading">
-        <HStack alignment="top" spacing={6} padding={{ leading: 22 }} frame={{ minWidth: 0, maxWidth: Infinity }}>
-          <VStack spacing={2} alignment="leading" frame={{ minWidth: 0, maxWidth: Infinity }}>
-            <Spacer minLength={5} />
-            <HStack alignment="lastTextBaseline" spacing={5} frame={{ minWidth: 0, maxWidth: Infinity }}>
-              <Text font={36} fontWeight="bold" foregroundStyle={ringThemes.fee.tint} lineLimit={1} minScaleFactor={0.38}>
-                {fee.balance}
-              </Text>
-              <Text font={10} fontWeight="semibold" foregroundStyle={timeStyle} lineLimit={1} minScaleFactor={0.65}>
-                {fee.unit || "元"}
-              </Text>
-              <Spacer />
-            </HStack>
-          </VStack>
+        <ZStack frame={{ minWidth: 0, maxWidth: Infinity }}>
+          <HStack alignment="lastTextBaseline" spacing={8} padding={{ top: 5, leading: 22, trailing: 44 }} frame={{ minWidth: 0, maxWidth: Infinity }}>
+            <Text font={36} fontWeight="bold" foregroundStyle={ringThemes.fee.tint} lineLimit={1} minScaleFactor={0.32}>
+              {fee.balance}
+            </Text>
+            <Text font={10} fontWeight="semibold" foregroundStyle={timeStyle} lineLimit={1} minScaleFactor={0.65}>
+              {fee.unit || "元"}
+            </Text>
+            <Spacer />
+          </HStack>
 
-          <VStack spacing={2} alignment="leading" frame={{ width: 50 }}>
-            <LogoImage logoPath={props.logoPath} size={24} fallbackTheme={ringThemes.fee} />
-            {props.updateTime ? (
-              <Text font={9} foregroundStyle={timeStyle} lineLimit={1} minScaleFactor={0.65} frame={{ width: 50, alignment: "leading" }}>
-                {props.updateTime}
-              </Text>
-            ) : null}
-          </VStack>
-        </HStack>
+          <HStack alignment="top" frame={{ minWidth: 0, maxWidth: Infinity }}>
+            <Spacer />
+            <VStack spacing={2} alignment="center" frame={{ width: 42 }}>
+              <LogoImage logoPath={props.logoPath} size={24} fallbackTheme={ringThemes.fee} />
+              {props.updateTime ? (
+                <Text font={9} foregroundStyle={timeStyle} lineLimit={1} minScaleFactor={0.65} frame={{ width: 42, alignment: "center" }}>
+                  {props.updateTime}
+                </Text>
+              ) : null}
+            </VStack>
+          </HStack>
+        </ZStack>
 
         <VStack
           alignment="leading"
