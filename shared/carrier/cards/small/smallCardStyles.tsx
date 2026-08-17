@@ -380,8 +380,8 @@ export function CompactListSmallStyle(props: SmallCardCommonProps) {
     <SmallCardSurface>
       <VStack spacing={4} frame={{ minWidth: 0, maxWidth: Infinity }} alignment="leading">
         <ZStack frame={{ minWidth: 0, maxWidth: Infinity }}>
-          <HStack alignment="lastTextBaseline" spacing={8} padding={{ top: 5, leading: 22, trailing: 44 }} frame={{ minWidth: 0, maxWidth: Infinity }}>
-            <Text font={36} fontWeight="bold" foregroundStyle={ringThemes.fee.tint} lineLimit={1} minScaleFactor={0.32}>
+          <HStack alignment="lastTextBaseline" spacing={10} padding={{ top: 5, leading: 22, trailing: 44 }} frame={{ minWidth: 0, maxWidth: Infinity }}>
+            <Text font={40} fontWeight="bold" foregroundStyle={ringThemes.fee.tint} lineLimit={1} minScaleFactor={0.28}>
               {fee.balance}
             </Text>
             <Text font={10} fontWeight="semibold" foregroundStyle={timeStyle} lineLimit={1} minScaleFactor={0.65}>
@@ -390,7 +390,7 @@ export function CompactListSmallStyle(props: SmallCardCommonProps) {
             <Spacer />
           </HStack>
 
-          <HStack alignment="top" frame={{ minWidth: 0, maxWidth: Infinity }}>
+          <HStack alignment="top" padding={{ trailing: 10 }} frame={{ minWidth: 0, maxWidth: Infinity }}>
             <Spacer />
             <VStack spacing={2} alignment="center" frame={{ width: 42 }}>
               <LogoImage logoPath={props.logoPath} size={24} fallbackTheme={ringThemes.fee} />
