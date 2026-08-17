@@ -40,5 +40,5 @@
   "icon" : "antenna.radiowaves.left.and.right",
   "entry" : "index.tsx",
   "permissions" : null,
-  "version" : "1.0.0"
+  "version" : "1.0.2"
 }

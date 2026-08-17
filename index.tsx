@@ -70,7 +70,7 @@ declare const Dialog: any
  * - 常量区不打日志
  * ===================================================================== */
 
-const VERSION = "1.0.1"
+const VERSION = "1.0.2"
 const BUILD_DATE = "2026-08-17"
 
 /* =====================================================================
@@ -105,6 +105,18 @@ const links: ModuleLinks = {
   loonPluginUrl: MOBILE_LOON_PLUGIN_URL,
   qxRewriteUrl: MOBILE_QX_REWRITE_URL,
   extras: [],
+}
+
+function reloadHomeScreenWidgets() {
+  try {
+    const W = (globalThis as any).Widget
+    W?.reloadAllTimelines?.()
+    W?.reloadTimelines?.()
+    W?.reload?.()
+    console.log("🔄 已请求刷新桌面小组件时间线")
+  } catch (e) {
+    console.warn(`⚠️ 请求刷新桌面小组件失败：${String(e)}`)
+  }
 }
 
 const handles = createModuleHandles({ egernName: "中国移动组件服务" }, links)
@@ -234,6 +246,7 @@ function SettingsView() {
     }
 
     saveChinaMobileSettings(next)
+    reloadHomeScreenWidgets()
     dismiss()
   }
 
