@@ -37,6 +37,7 @@ import { errToString, srcLabel, } from "./shared/utils/widgetKit"
 // 模块分类 · 接口常量（保持原样）
 // =====================================================================
 const REWRITE_URL = "https://api.example.com/10086/query"
+const BUILD_TAG = "v1.0.3"
 
 // =====================================================================
 // 模块分类 · 单文件缓存（Storage meta + SingleFile data）
@@ -382,7 +383,7 @@ function convertToCarrierData(p: ParsedData): CarrierData {
       used: safeN(p.voice.used),
       total: safeN(p.voice.total),
     },
-    updateTime: p.updateTime ?? nowHHMM(),
+    updateTime: `${p.updateTime ?? nowHHMM()}·${BUILD_TAG}`,
   }
 }
 
@@ -484,7 +485,7 @@ async function render() {
     console.log(`🧠 缓存决策：${decision} | age=${cacheAgeMin ?? "-"}min`)
 
     const tag = fresh ? "缓存" : "缓存(旧)"
-    const dataForRender: CarrierData = { ...cachedData, updateTime: `${nowHHMM()}·${tag}` }
+    const dataForRender: CarrierData = { ...cachedData, updateTime: `${nowHHMM()}·${tag}·${BUILD_TAG}` }
 
     const logoPath = await getCachedImagePath({
       url: LOGO_URL,
@@ -540,7 +541,7 @@ async function render() {
           baseDir: "documents",
         })
 
-        const dataForRender: CarrierData = { ...cached, updateTime: `${nowHHMM()}·兜底缓存` }
+        const dataForRender: CarrierData = { ...cached, updateTime: `${nowHHMM()}·兜底缓存·${BUILD_TAG}` }
 
         console.log(
           logoPath

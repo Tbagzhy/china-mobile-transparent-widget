@@ -1,6 +1,6 @@
 {
   "color" : "rgba(28, 140, 255,1)",
-  "name" : "中國移動",
+  "name" : "中國移動刷新版",
   "iconImage" : null,
   "runInApp" : false,
   "intentInputTypes" : [
@@ -40,5 +40,5 @@
   "icon" : "antenna.radiowaves.left.and.right",
   "entry" : "index.tsx",
   "permissions" : null,
-  "version" : "1.0.2"
+  "version" : "1.0.3"
 }
