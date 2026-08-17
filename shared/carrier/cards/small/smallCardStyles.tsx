@@ -380,8 +380,8 @@ export function CompactListSmallStyle(props: SmallCardCommonProps) {
     <SmallCardSurface>
       <VStack spacing={4} frame={{ minWidth: 0, maxWidth: Infinity }} alignment="leading">
         <ZStack frame={{ minWidth: 0, maxWidth: Infinity }}>
-          <HStack alignment="lastTextBaseline" spacing={10} padding={{ top: 5, leading: 22, trailing: 44 }} frame={{ minWidth: 0, maxWidth: Infinity }}>
-            <Text font={40} fontWeight="bold" foregroundStyle={ringThemes.fee.tint} lineLimit={1} minScaleFactor={0.28}>
+          <HStack alignment="lastTextBaseline" spacing={10} padding={{ top: 5, leading: 10, trailing: 44 }} frame={{ minWidth: 0, maxWidth: Infinity }}>
+            <Text font={45} fontWeight="bold" foregroundStyle={ringThemes.fee.tint} lineLimit={1} minScaleFactor={0.24}>
               {fee.balance}
             </Text>
             <Text font={10} fontWeight="semibold" foregroundStyle={timeStyle} lineLimit={1} minScaleFactor={0.65}>
