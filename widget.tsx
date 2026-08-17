@@ -398,12 +398,12 @@ async function render() {
   const ui = pickUiSettings(settings)
 
   // 刷新间隔：沿用你 settings 的 resolveRefreshInterval
-  const refreshInterval = resolveRefreshInterval(settings.refreshInterval, 180)
+  const refreshInterval = Math.min(resolveRefreshInterval(settings.refreshInterval, 180), 30)
   const nextUpdate = new Date(Date.now() + refreshInterval * 60 * 1000)
   const reloadPolicy: WidgetReloadPolicy = { policy: "after", date: nextUpdate }
 
-  // 强制刷新：network_only 时跳过 fresh 缓存
-  const forceRefresh = settings.cache?.mode === "network_only"
+  // 桌面组件每次渲染优先联网，避免预览已更新但桌面仍吃旧缓存。网络失败时下面仍会走 stale fallback。
+  const forceRefresh = true
 
   // ===================================================================
   // 模块分类 · 配置消费日志（单行）

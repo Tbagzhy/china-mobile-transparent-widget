@@ -42,7 +42,7 @@ export const defaultChinaMobileSettings: ChinaMobileSettings = {
   // ✅ 对齐联通：UI 默认直接来自 pickUiSettings（确保字段齐全且一致）
   ...pickUiSettings({}),
 
-  refreshInterval: 180,
+  refreshInterval: 30,
 
   cacheScopeKey: "",
   cache: {
