@@ -42,7 +42,7 @@ export const defaultChinaMobileSettings: ChinaMobileSettings = {
   // ✅ 对齐联通：UI 默认直接来自 pickUiSettings（确保字段齐全且一致）
   ...pickUiSettings({}),
 
-  refreshInterval: 30,
+  refreshInterval: 180,
 
   cacheScopeKey: "",
   cache: {
@@ -77,8 +77,8 @@ function normalizeCacheConfig(cfg: any, refreshIntervalMinutes: number): CacheCo
   const ttlPolicy: CacheConfig["ttlPolicy"] = cfg?.ttlPolicy === "fixed" ? "fixed" : "auto"
   const ttlFixed = Math.max(1, Number(cfg?.ttlMinutesFixed ?? d.ttlMinutesFixed) || d.ttlMinutesFixed)
 
-  const ttlMinutes = Math.max(240, ttlPolicy === "fixed" ? ttlFixed : (Number(refreshIntervalMinutes) || 0))
-  const ttlMinutesFixed = Math.max(240, ttlFixed)
+  const ttlMinutes = Math.max(180, ttlPolicy === "fixed" ? ttlFixed : (Number(refreshIntervalMinutes) || 0))
+  const ttlMinutesFixed = Math.max(180, ttlFixed)
 
   const allowStaleOnError =
     typeof cfg?.allowStaleOnError === "boolean" ? cfg.allowStaleOnError : d.allowStaleOnError

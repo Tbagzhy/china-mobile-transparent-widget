@@ -78,7 +78,7 @@ function computeTtlMs(settings: ChinaMobileSettings): number {
     return Math.max(1, cfg.ttlMinutesFixed) * 60 * 1000
   }
   // auto：ttl=max(4h, refreshInterval)
-  return Math.max(4 * 60 * 60 * 1000, refreshMs)
+  return Math.max(3 * 60 * 60 * 1000, refreshMs)
 }
 
 function boundKeyFromSettings(settings: ChinaMobileSettings): string {
@@ -398,12 +398,12 @@ async function render() {
   const ui = pickUiSettings(settings)
 
   // 刷新间隔：沿用你 settings 的 resolveRefreshInterval
-  const refreshInterval = Math.min(resolveRefreshInterval(settings.refreshInterval, 180), 30)
+  const refreshInterval = Math.max(60, resolveRefreshInterval(settings.refreshInterval, 180))
   const nextUpdate = new Date(Date.now() + refreshInterval * 60 * 1000)
   const reloadPolicy: WidgetReloadPolicy = { policy: "after", date: nextUpdate }
 
-  // 桌面组件每次渲染优先联网，避免预览已更新但桌面仍吃旧缓存。网络失败时下面仍会走 stale fallback。
-  const forceRefresh = true
+  // 以缓存为主，避免桌面组件每次唤醒都请求接口；缓存过期后再联网。
+  const forceRefresh = settings.cache?.mode === "network_only"
 
   // ===================================================================
   // 模块分类 · 配置消费日志（单行）
